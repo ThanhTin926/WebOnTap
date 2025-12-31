@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "total": 3,
+    "version": "1.0"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "content": "HTML là viết tắt của cụm từ nào?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Text Machine Language",
+        "Home Tool Markup Language",
+        "Hyperlinks Text Mark Language"
+      ],
+      "correctIndex": 0,
+      "difficulty": "easy",
+      "topic": "html"
+    },
+    {
+      "id": 2,
+      "content": "Thẻ nào dùng để tạo liên kết trong HTML?",
+      "options": ["<a>", "<link>", "<href>", "<url>"],
+      "correctIndex": 0,
+      "difficulty": "easy",
+      "topic": "html"
+    },
+    {
+      "id": 3,
+      "content": "CSS dùng để làm gì?",
+      "options": [
+        "Xử lý logic",
+        "Trang trí giao diện",
+        "Quản lý dữ liệu",
+        "Kết nối server"
+      ],
+      "correctIndex": 1,
+      "difficulty": "easy",
+      "topic": "css"
+    }
+  ]
+}

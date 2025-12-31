@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lịch sử làm bài</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <h1>📊 Thống kê cá nhân</h1>
+  
+  <div id="stats">
+    <p>Tổng số lần thi: <b id="total-tests">0</b></p>
+    <p>Điểm trung bình: <b id="avg-score">0</b>%</p>
+  </div>
+
+  <h3>Lịch sử chi tiết</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Ngày giờ</th>
+        <th>Kết quả</th>
+        <th>Điểm số</th>
+      </tr>
+    </thead>
+    <tbody id="history-list"></tbody>
+  </table>
+
+  <a href="index.html" class="btn-home">⬅ Về trang chủ</a>
+  <button onclick="clearHistory()" style="background: #f8d7da; color: #721c24; border:none;">Xóa lịch sử</button>
+
+  <script>
+    // Logic đơn giản đặt trực tiếp ở đây hoặc tách ra file js riêng
+    const history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
+    const tbody = document.getElementById("history-list");
+    
+    // 1. Render bảng
+    if (history.length > 0) {
+      // Hiển thị mới nhất lên đầu
+      history.slice().reverse().forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.date}</td>
+          <td>${item.correct}/${item.total}</td>
+          <td>${item.score}%</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // 2. Tính thống kê
+      document.getElementById("total-tests").innerText = history.length;
+      const totalScore = history.reduce((sum, item) => sum + item.score, 0);
+      document.getElementById("avg-score").innerText = Math.round(totalScore / history.length);
+    } else {
+      tbody.innerHTML = "<tr><td colspan='3'>Chưa có dữ liệu</td></tr>";
+    }
+
+    function clearHistory() {
+      if(confirm("Bạn có chắc muốn xóa toàn bộ lịch sử?")) {
+        localStorage.removeItem("quiz_history");
+        location.reload();
+      }
+    }
+  </script>
+</body>
+</html>
